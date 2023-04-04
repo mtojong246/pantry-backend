@@ -161,5 +161,5 @@ app.put('/prev-quantities', (req, res) => {
 
 
 app.listen(process.env.PORT || 3080, () => {
-    console.log(`app is running on port ${process.env.port}`);
+    console.log(`app is running on port ${process.env.PORT}`);
 })
