@@ -17,19 +17,15 @@ const app = express();
 app.use(express.json({limit: '50mb'}));
 app.use(cors());
 
-app.get("/", function (req, res) {
-    res.sendFile("client/build/index.html");
-  });
-
-if (process.env.NODE_ENV === "production") {
-app.use(express.static("client/build"));
-}
-
 /* login/register */
 
 //app.get('/', (req, res) => {
 //    db.select('*').from('users').then(data => res.json(data)).catch(err => res.status(400).json('unable to load all user data'))
 //})
+
+app.get('/', (req, res) => {
+    res.json('hello world').catch(err => res.status(400).json('cannot get'))
+})
 
 app.post('/login', (req, res) => {
     if (!req.body.email || !req.body.password) {
