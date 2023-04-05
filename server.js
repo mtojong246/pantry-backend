@@ -22,7 +22,7 @@ app.use(cors());
 /* login/register */
 
 app.get('/', (req, res) => {
-    db.select('*').from('users').then(data => res.json(data))
+    db.select('*').from('users').then(data => res.json(data)).catch(err => res.status(400).json('unable to load all user data'))
 })
 
 app.post('/login', (req, res) => {
@@ -96,13 +96,13 @@ app.post('/load-user', (req, res) => {
 app.put('/grocery-list', (req, res) => {
     db('users').where('email','=', req.body.email).update({
         groceryitems: JSON.stringify(req.body.groceryItems)
-    }).returning('groceryitems').then(data => res.json(data[0].groceryitems))
+    }).returning('groceryitems').then(data => res.json(data[0].groceryitems)).catch(err => res.status(400).json('error updating grocery items'))
 })
 
 app.put('/active-list', (req, res) => {
     db('users').where('email', '=', req.body.email).update({
         activelist: JSON.stringify(req.body.activeList)
-    }).returning('activelist').then(data => res.json(data[0].activelist))
+    }).returning('activelist').then(data => res.json(data[0].activelist)).catch(err => res.status(400).json('error updating active list'))
 })
 
 /* pantry */
@@ -110,25 +110,25 @@ app.put('/active-list', (req, res) => {
 app.put('/pantry-recipes', (req, res) => {
     db('users').where('email', '=', req.body.email).update({
         pantryrecipes: JSON.stringify(req.body.pantryRecipes)
-    }).returning('pantryrecipes').then(data => res.json(data[0].pantryrecipes))
+    }).returning('pantryrecipes').then(data => res.json(data[0].pantryrecipes)).catch(err => res.status(400).json('error updating pantry recipes'))
 })
 
 app.put('/pantry-items', (req, res) => {
     db('users').where('email', '=', req.body.email).update({
         pantryitems: JSON.stringify(req.body.pantryItems)
-    }).returning('pantryitems').then(data => res.json(data[0].pantryitems))
+    }).returning('pantryitems').then(data => res.json(data[0].pantryitems)).catch(err => res.status(400).json('error updating pantry items'))
 })
 
 app.put('/favorites', (req, res) => {
     db('users').where('email', '=', req.body.email).update({
         favorites: JSON.stringify(req.body.favorites)
-    }).returning('favorites').then(data => res.json(data[0].favorites))
+    }).returning('favorites').then(data => res.json(data[0].favorites)).catch(err => res.status(400).json('error updating favorites'))
 })
 
 app.put('/recipe', (req, res) => {
     db('users').where('email', '=', req.body.email).update({
         recipe: JSON.stringify(req.body.recipe)
-    }).returning('recipe').then(data => res.json(data[0].recipe))
+    }).returning('recipe').then(data => res.json(data[0].recipe)).catch(err => res.status(400).json('error updating recipe'))
 })
 
 
@@ -137,25 +137,25 @@ app.put('/recipe', (req, res) => {
 app.put('/food-log', (req, res) => {
     db('users').where('email', '=', req.body.email).update({
         foodlog: JSON.stringify(req.body.foodLog)
-    }).returning('foodlog').then(data => res.json(data[0].foodlog))
+    }).returning('foodlog').then(data => res.json(data[0].foodlog)).catch(err => res.status(400).json('error updating food log'))
 })
 
 app.put('/log-values', (req, res) => {
     db('users').where('email', '=', req.body.email).update({
         logvalues: JSON.stringify(req.body.logValues)
-    }).returning('logvalues').then(data => res.json(data[0].logvalues))
+    }).returning('logvalues').then(data => res.json(data[0].logvalues)).catch(err => res.status(400).json('error updating log values'))
 })
 
 app.put('/nutrition-values', (req, res) => {
     db('users').where('email', '=', req.body.email).update({
         nutritionvalues: JSON.stringify(req.body.nutritionValues)
-    }).returning('nutritionvalues').then(data => res.json(data[0].nutritionvalues))
+    }).returning('nutritionvalues').then(data => res.json(data[0].nutritionvalues)).catch(err => res.status(400).json('error updating nutrition values'))
 })
 
 app.put('/prev-quantities', (req, res) => {
     db('users').where('email', '=', req.body.email).update({
         prevquantities: JSON.stringify(req.body.prevQuantities)
-    }).returning('prevquantities').then(data => res.json(data[0].prevquantities))
+    }).returning('prevquantities').then(data => res.json(data[0].prevquantities)).catch(err => res.status(400).json('error updating previous quantities'))
 })
 
 
