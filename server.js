@@ -19,9 +19,9 @@ app.use(cors());
 
 /* login/register */
 
-app.get('/', (req, res) => {
-    db.select('*').from('users').then(data => res.json(data)).catch(err => res.status(400).json('unable to load all user data'))
-})
+//app.get('/', (req, res) => {
+//    db.select('*').from('users').then(data => res.json(data)).catch(err => res.status(400).json('unable to load all user data'))
+//})
 
 app.post('/login', (req, res) => {
     if (!req.body.email || !req.body.password) {
